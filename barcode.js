@@ -47,10 +47,10 @@ var barcode = function() {
 
 	var config = {
 		strokeColor: '#f00',
-		start: 0.1,
-		end: 0.9,
+		start: 0.2,
+		end: 0.6,
 		threshold: 160,
-		quality: 0.35,
+		quality: 0.4,
 		delay: 100,
 		video: '',
 		canvas: '',
