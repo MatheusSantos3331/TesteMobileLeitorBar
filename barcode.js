@@ -50,7 +50,7 @@ var barcode = function() {
 		start: 0.1,
 		end: 0.9,
 		threshold: 160,
-		quality: 0.75,
+		quality: 0.65,
 		delay: 100,
 		video: '',
 		canvas: '',
