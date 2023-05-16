@@ -29,8 +29,12 @@
   <div id="interactive" class="viewport"></div>
   <div id="result">Resultado: </div>
 
+  <audio id="beep" src="path/to/beep-sound.mp3" preload="auto"></audio>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
   <script>
+    var beepSound = new Audio('path/to/beep-sound.mp3'); // Substitua 'path/to/beep-sound.mp3' pelo caminho do arquivo de som desejado
+
     Quagga.init({
       inputStream: {
         name: "Live",
@@ -57,6 +61,8 @@
       var code = result.codeResult.code;
       console.log("Código de barras detectado:", code);
       document.getElementById("result").textContent = "Resultado: " + code;
+      
+      beepSound.play(); // Reproduz o som quando um código de barras é detectado
     });
   </script>
 </body>
