@@ -5,7 +5,8 @@
   <style>
     #interactive.viewport {
       position: relative;
-      width: 100%;
+      width: 320px; /* largura desejada */
+      height: 240px;
       height: auto;
       overflow: hidden;
       text-align: center;
@@ -33,7 +34,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
   <script>
-    var beepSound = new Audio('path/to/beep-sound.mp3'); // Substitua 'path/to/beep-sound.mp3' pelo caminho do arquivo de som desejado
+    var beepSound = new Audio("barcode.wav"); // Substitua 'path/to/beep-sound.mp3' pelo caminho do arquivo de som desejado
 
     Quagga.init({
       inputStream: {
