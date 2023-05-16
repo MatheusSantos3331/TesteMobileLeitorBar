@@ -98,24 +98,27 @@ var barcode = function() {
 
 	function snapshot() {
 		elements.ctx.drawImage(elements.video, 0, 0, dimensions.width, dimensions.height);
-		
+	  
 		// Obter os pixels da imagem
 		var imageData = elements.ctx.getImageData(0, 0, dimensions.width, dimensions.height);
 		var pixels = imageData.data;
-		
+	  
 		// Inverter os valores dos componentes de cor dos pixels para criar o efeito negativo
 		for (var i = 0; i < pixels.length; i += 4) {
-			pixels[i] = 255 - pixels[i]; // componente vermelho
-			pixels[i + 1] = 255 - pixels[i + 1]; // componente verde
-			pixels[i + 2] = 255 - pixels[i + 2]; // componente azul
+		  var red = pixels[i];
+		  var green = pixels[i + 1];
+		  var blue = pixels[i + 2];
+	  
+		  pixels[i] = 255 - red; // componente vermelho
+		  pixels[i + 1] = 255 - green; // componente verde
+		  pixels[i + 2] = 255 - blue; // componente azul
 		}
-		
+	  
 		// Desenhar a imagem modificada no canvas
 		elements.ctx.clearRect(0, 0, dimensions.width, dimensions.height); // Limpar o canvas
 		elements.ctx.putImageData(imageData, 0, 0);
-		
-		processImage();       
-	}
+	  
+		processImage();
 
 	function processImage() {
 
