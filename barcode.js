@@ -99,15 +99,22 @@ var barcode = function() {
 	function snapshot() {
 		elements.ctx.drawImage(elements.video, 0, 0, dimensions.width, dimensions.height);
 	
-		// Aplicar filtro de negativo
+		// Obter os pixels da imagem
 		var imageData = elements.ctx.getImageData(0, 0, dimensions.width, dimensions.height);
 		var pixels = imageData.data;
+	
+		// Aplicar filtro de negativo
 		for (var i = 0; i < pixels.length; i += 4) {
 			pixels[i] = 255 - pixels[i]; // componente vermelho
 			pixels[i + 1] = 255 - pixels[i + 1]; // componente verde
 			pixels[i + 2] = 255 - pixels[i + 2]; // componente azul
 		}
-		elements.ctx.putImageData(imageData, 0, 0);
+	
+		// Criar um novo objeto ImageData com os pixels modificados
+		var modifiedImageData = new ImageData(pixels, dimensions.width, dimensions.height);
+	
+		// Desenhar a imagem modificada no canvas
+		elements.ctx.putImageData(modifiedImageData, 0, 0);
 	
 		processImage();		
 	}
