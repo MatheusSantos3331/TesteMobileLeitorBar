@@ -114,6 +114,7 @@ var barcode = function() {
 		var modifiedImageData = new ImageData(pixels, dimensions.width, dimensions.height);
 	
 		// Desenhar a imagem modificada no canvas
+		elements.ctx.clearRect(0, 0, dimensions.width, dimensions.height); // Limpar o canvas
 		elements.ctx.putImageData(modifiedImageData, 0, 0);
 	
 		processImage();		
