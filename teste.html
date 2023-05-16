@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leitor de Código de Barras</title>
+  <style>
+    #interactive.viewport {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #interactive.viewport > canvas,
+    #interactive.viewport > video {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    #result {
+      border: solid;
+      border-width: 1px;
+      padding: 5px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="interactive" class="viewport"></div>
+  <div id="result">Resultado: </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+  <script>
+    Quagga.init({
+      inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        constraints: {
+          width: 640,
+          height: 480,
+          facingMode: "environment" // use "user" para a câmera frontal
+        }
+      },
+      decoder: {
+        readers: ["ean_reader"] // define o tipo de código de barras a ser lido (EAN-13)
+      }
+    }, function(err) {
+      if (err) {
+        console.error("Erro ao inicializar o Quagga: ", err);
+        return;
+      }
+      console.log("Quagga inicializado com sucesso.");
+      Quagga.start();
+    });
+
+    Quagga.onDetected(function(result) {
+      var code = result.codeResult.code;
+      console.log("Código de barras detectado:", code);
+      document.getElementById("result").textContent = "Resultado: " + code;
+    });
+  </script>
+</body>
+</html>
